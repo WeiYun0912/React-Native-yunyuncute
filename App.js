@@ -8,7 +8,6 @@ import {
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import Header from "./components/Header";
-import Sign from "./components/Sign";
 import Bottom from "./components/Bottom";
 
 const theme = {

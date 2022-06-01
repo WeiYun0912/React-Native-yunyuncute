@@ -10,6 +10,7 @@ import { DataTable } from "react-native-paper";
 import { useQuery } from "@apollo/client";
 import { QUERY_YUN, QUERY_SIGN } from "../gql/gql";
 import SimpleDateTime from "react-simple-timestamp-to-date";
+
 const Sign = (props) => {
   const {
     data: yunData,
@@ -21,6 +22,8 @@ const Sign = (props) => {
     loading: signRecord,
     refetch: signRefetch,
   } = useQuery(QUERY_SIGN);
+
+  const pressMusic = async () => {};
 
   if (yunLoading || signRecord) {
     return <Text>Loading...</Text>;
@@ -38,6 +41,7 @@ const Sign = (props) => {
             icon="sign-text"
             labelStyle={{ fontSize: 20 }}
             color="#f50057"
+            onPress={pressMusic}
           >
             <Text>簽到</Text>
           </Button>
