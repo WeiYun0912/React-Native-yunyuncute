@@ -1,20 +1,59 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  ImageBackground,
+  ScrollView,
+  Text,
+} from "react-native";
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
+import Header from "./components/Header";
+import Sign from "./components/Sign";
+import Bottom from "./components/Bottom";
+
+const theme = {
+  ...DefaultTheme,
+  roundness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: "#3498db",
+    accent: "#f1c40f",
+  },
+};
 
 export default function App() {
+  const client = new ApolloClient({
+    cache: new InMemoryCache(),
+    uri: "https://yun-graphql.herokuapp.com/graphql",
+  });
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ApolloProvider client={client}>
+      <ImageBackground
+        source={require("./assets/background.jpg")}
+        resizeMode="cover"
+        style={styles.image}
+      >
+        <PaperProvider theme={theme}>
+          <Header />
+
+          {/* <Sign /> */}
+
+          <Bottom />
+        </PaperProvider>
+      </ImageBackground>
+    </ApolloProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    // paddingHorizontal: 48,
+  },
+  image: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "center",
   },
 });
