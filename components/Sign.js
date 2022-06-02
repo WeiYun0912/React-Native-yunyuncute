@@ -53,31 +53,34 @@ const Sign = (props) => {
               <DataTable.Title>簽到時間</DataTable.Title>
             </DataTable.Header>
             <ScrollView>
-              {signData.signRecord?.map((record) => (
-                <DataTable.Row key={record.signAt}>
-                  <DataTable.Cell>
-                    <SimpleDateTime
-                      dateSeparator="-"
-                      format="MYD"
-                      timeSeparator=":"
-                      meridians="1"
-                      showTime="0"
-                    >
-                      {record.signAt}
-                    </SimpleDateTime>
-                  </DataTable.Cell>
-                  <DataTable.Cell>
-                    <SimpleDateTime
-                      dateSeparator="-"
-                      format="MYD"
-                      timeSeparator=":"
-                      showDate="0"
-                    >
-                      {record.signAt}
-                    </SimpleDateTime>
-                  </DataTable.Cell>
-                </DataTable.Row>
-              ))}
+              {signData.signRecord
+                ?.slice()
+                .sort((a, b) => b.signAt - a.signAt)
+                .map((record) => (
+                  <DataTable.Row key={record.signAt}>
+                    <DataTable.Cell>
+                      <SimpleDateTime
+                        dateSeparator="-"
+                        format="MYD"
+                        timeSeparator=":"
+                        meridians="1"
+                        showTime="0"
+                      >
+                        {record.signAt}
+                      </SimpleDateTime>
+                    </DataTable.Cell>
+                    <DataTable.Cell>
+                      <SimpleDateTime
+                        dateSeparator="-"
+                        format="MYD"
+                        timeSeparator=":"
+                        showDate="0"
+                      >
+                        {record.signAt}
+                      </SimpleDateTime>
+                    </DataTable.Cell>
+                  </DataTable.Row>
+                ))}
             </ScrollView>
           </DataTable>
         </View>
@@ -90,7 +93,7 @@ export default Sign;
 
 const styles = StyleSheet.create({
   SignContainer: {
-    marginTop: 20,
+    // marginTop: 10,
   },
   TableContainer: {
     // width: "100%",
